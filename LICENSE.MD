@@ -52,6 +52,7 @@ If you prefer a standard OSI license, you may fork and relicense your contributi
 - Ogre SDK 1.7.4 – OGRE is under an MIT‑style license in modern versions; verify the exact 1.7.4 terms.
 - OIS – zlib/libpng license.
 - Boost 1.57 – Boost Software License.
+- RakNet 4.023 – modified BSD license.
 - zlib / zziplib – zlib/libpng license.
 - irrKlang – proprietary; redistribution typically not permitted; obtain from the vendor.
 - FMOD (debug config only) – proprietary; obtain from the vendor.
