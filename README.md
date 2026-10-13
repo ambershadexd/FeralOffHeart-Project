@@ -1,6 +1,10 @@
 # FeralOffHeart-Project
 A community project to make the Animal MMO "FeralHeart" work offline.
 
+# The-OpenHeart-Project
+The FeralOffHeart project is based off The OpenHeart Project, a big and useful modification of the FeralHeart source code made by radioactivedarkness. Huge props to them.
+(>Find the repository here<)[https://github.com/radioactivedark/The-OpenHeart-Project/tree/main]
+
 # Community:
 Join our [Discord Server](https://discord.gg/Z3aMzFpwsy) if you plan on contributing.
 
