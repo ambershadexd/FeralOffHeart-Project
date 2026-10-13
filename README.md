@@ -1,6 +1,11 @@
-# The-OpenHeart-Project
-Welcome! This is the official repository for The OpenHeart Project; a project which aims to create an easy-to-deploy, open-source FeralHeart source code repo. By the people, for the people. TOHP.
+# FeralOffHeart-Project
+A community project to make the Animal MMO "FeralHeart" work offline.
 
-# The-FeralOffHeart-Project
-An attempt at trying to make FeralHeart work offline.
-The current goal is to remove everything in the game that requires networking so that it can bypass it, and store user data in the already existing folders for media and such.
+# Community:
+Join our [Discord Server](https://discord.gg/Z3aMzFpwsy) if you plan on contributing.
+
+# For Contributing:
+
+General Recommendations:
+- Try to keep Pull Requests for modifications/fixes not too large, try to divide it into multiple PRs. The same goes for new content that is fully functional, this is mostly for easier management.
+- If you plan on adding new content that requires testing or still needs some work, make sure to make it a draft.
