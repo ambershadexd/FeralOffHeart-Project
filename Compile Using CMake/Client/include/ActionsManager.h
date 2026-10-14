@@ -7,12 +7,11 @@
 #include <Unit.h>
 #include <SkillsManager.h>
 
-class ActionsManager : public Singleton<ActionsManager>, public ObjectListener, public ChatListener, public SkillsListener
+class ActionsManager : public Singleton<ActionsManager>, public ObjectListener, public SkillsListener
 {
 private:
     Gui *mGui;
     EmoteManager *mEmoteMgr;
-    NetworkManager *mNetMgr;
     Unit *mPlayer;
 
     GuiPanel *mPanel;
@@ -49,7 +48,6 @@ public:
 
         mGui = Gui::getSingletonPtr();
         mEmoteMgr = EmoteManager::getSingletonPtr();
-        mNetMgr = NetworkManager::getSingletonPtr();
 
         mPanel = mGui->addPanel("ActionScreen");
         mPanel->show(false);
@@ -435,7 +433,7 @@ public:
     {
         return mPanel;
     }
-    const bool chatLineClicked(const ClickableLine &line){return false;}
+    //const bool chatLineClicked(const ClickableLine &line){return false;} (CHAT IS TEMPORARILY DISABLED)
     const bool chatCommand(const String &command){return false;}
     const bool chatLocal(const String &caption)
     {
