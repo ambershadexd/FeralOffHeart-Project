@@ -22,25 +22,12 @@ protected:
     GuiPanel *mEscPanel;
     PlayerData mPlayerData;
     bool mLoaded;
-    String mToken;
     unsigned int mCharID;
     String mUsername;
-    unsigned char mTokenRetryAttempts;
     Real mArrivalYaw;
     bool mFirstEntrance;
     bool mMapTransition;
 
-    bool mGhostMode;
-    String mGhostToken;
-    String mGhostMap;
-    Vector3 mGhostPosition;
-
-    Real mSendUpdateTimer;
-    Real mSendUpdateTimer2;
-    Real mResendUpdateTimer;
-    Vector3 mLastSentPosition;
-    Real mLastSentYaw;
-    Vector2 mLastSentHeadDir;
     unsigned char mLastSentAction;
     bool mLastSentFlags[NUM_STATUSFLAGS];
 public:
@@ -59,9 +46,6 @@ public:
         mUsername = "";
         mFirstEntrance = false;
         mMapTransition = false;
-        mGhostMode = false;
-        mGhostToken = "";
-        mGhostMap = "";
     }
     ~InGameState()
     {
@@ -83,10 +67,6 @@ public:
 
 		if (!mSplashScreenMgr->isVisible())mSplashScreenMgr->show(true);
 
-        mSendUpdateTimer = 0;
-        mSendUpdateTimer2 = 0;
-        mResendUpdateTimer = 0;
-        mTokenRetryAttempts = 0;
     }
     void exit()
     {
@@ -119,75 +99,9 @@ public:
 
         mRoot->renderOneFrame();
     }
-    void sendUpdate(const Real &timeElapsed)
-    {
-        mSendUpdateTimer += timeElapsed;
-        mSendUpdateTimer2 += timeElapsed;
-        mResendUpdateTimer += timeElapsed;
-
-        Unit *player = mControlMgr->getPlayer();
-
-        //Periodic resend to upkeep data synchronization
-        bool doResend = false;
-        if(mResendUpdateTimer>30.0f)
-        {
-            mResendUpdateTimer = 0;
-            doResend = true;
-        }
-
-        if(doResend || mSendUpdateTimer>(player->isRunningModifier()?0.5f:1.50f))
-        {
-
-            //Position
-            Vector3 position = player->getPosition();
-            if(!player->mAntiGravity)position.y = player->getGroundHeight();
-            //Status flags
-            const bool flags[NUM_STATUSFLAGS] = {player->mAntiGravity,player->mIsSwimming};
-            bool changed = false;
-            for(int i=0;i<NUM_STATUSFLAGS;i++)
-            {
-                if(mLastSentFlags[i]!=flags[i])
-                {
-                    mLastSentFlags[i] = flags[i];
-                    changed = true;
-                }
-            }
-
-            mSendUpdateTimer = 0;
-        }
-        if(doResend || mSendUpdateTimer2>2.00f)
-        {
-
-            //Yaw
-            const Real yaw = player->getYaw();
-            if(doResend || yaw!=mLastSentYaw)
-            {
-                mLastSentYaw = yaw;
-            }
-            //Head dir
-            const Real ewState = player->getHeadEWState();
-            const Real nsState = player->getHeadNSState();
-            //Action
-            if(player->isSpecialAction())
-            {
-                const unsigned char action = player->getAction();
-                if(doResend || action!=mLastSentAction)
-                {
-                    mLastSentAction = action;
-                }
-            }
-
-            mSendUpdateTimer2 = 0;
-        }
-    }
     void setPlayerData(PlayerData &data)
     {
         mPlayerData = data;
-    }
-    void setToken(const String &token, const unsigned int &charID=0)
-    {
-        mToken = token;
-        mCharID = charID;
     }
     void setUsername(const String &username)
     {
@@ -200,13 +114,6 @@ public:
     void setFirstEntrance()
     {
         mFirstEntrance = true;
-    }
-    void setGhostMode(const String &token, const String &ghostMap, const Vector3 &ghostPos)
-    {
-        mGhostMode = (token!="");
-        mGhostToken = token;
-        mGhostMap = ghostMap;
-        mGhostPosition = ghostPos;
     }
     const bool keyPressed(const char &index)
     {
@@ -397,7 +304,6 @@ public:
             replaceState = true;
             InGameState *state = new InGameState();
             state->setPlayerData(mPlayerData);
-            state->setToken(mToken,mCharID);
             state->setUsername(mUsername);
             state->setArrivalYaw(mapInfo.mYaw);
             mNextState = state;
@@ -410,9 +316,7 @@ public:
             replaceState = true;
             InGameState *state = new InGameState();
             state->setPlayerData(mPlayerData);
-            state->setToken(mToken,mCharID);
             state->setUsername(mUsername);
-            state->setGhostMode(mGhostToken,mGhostMap,mGhostPosition);
             mNextState = state;
             mMapTransition = true;
         }
