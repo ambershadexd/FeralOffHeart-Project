@@ -29,7 +29,6 @@ protected:
     SkyManager *mSkyMgr;
     WaterManager *mWaterMgr;
 	UnitManager *mUnitMgr;
-	NetworkManager *mNetMgr; //!
 public:
     bool changeState;
 	bool replaceState;

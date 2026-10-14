@@ -3,6 +3,7 @@
 
 #include <ActionsManager.h>
 #include <MiniMapManager.h>
+#include <GamePanelListener.h>
 
 class GamePanelManager : public Singleton<GamePanelManager>, public GamePanelListener
 {
@@ -78,13 +79,8 @@ public:
         mChatButton->setOwnMaterials("GuiMat/ButtonChatUp","GuiMat/ButtonChatOver","GuiMat/ButtonChatDown","GuiMat/ButtonChatHighlight");
 
         mActionsPanel = ActionsManager::getSingletonPtr()->getPanel();
-        mMoviePanel = MovieMaker::getSingletonPtr()->getPanel();
-        mInfoPanel = InfoManager::getSingletonPtr()->getPanel();
-        mFriendsPanel = FriendsManager::getSingletonPtr()->getPanel();
-        mPartyPanel = PartyManager::getSingletonPtr()->getPanel();
-        mGroupPanel = GroupManager::getSingletonPtr()->getPanel();
         mMiniMapPanel = MiniMapManager::getSingletonPtr()->getPanel();
-        ChatManager::getSingletonPtr()->getPanels(&mChatOutputPanel,&mChatInputPanel,&mChatMidPanel,&mChatFilterPanel);
+        //ChatManager::getSingletonPtr()->getPanels(&mChatOutputPanel,&mChatInputPanel,&mChatMidPanel,&mChatFilterPanel);
 
         updateReminder(mFriendsReminder,mFriendsButton,mFriendsReminderCount);
         updateReminder(mPartyReminder,mPartyButton,mPartyReminderCount);

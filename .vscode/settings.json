@@ -1,4 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/Usuario/Documents/Proyectos/The-FeralOffHeart-Project",
+    "cmake.sourceDirectory": "${workspaceFolder}/Compile Using CMake/Client",
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
