@@ -1,5 +1,6 @@
-#This is an old repository that wont get updated anymore, you can probably try to continue it on your own, but a "modernized" version is available in a different repository,
+# This is an old repository that wont get updated anymore, you can probably try to continue it on your own, but a "modernized" version is available in a different repository,
 
+--------------------------------------
 # FeralOffHeart-Project
 A community project to make the Animal MMO "FeralHeart" work offline.
 
